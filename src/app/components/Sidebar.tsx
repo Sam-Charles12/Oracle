@@ -18,11 +18,15 @@ const nav: { id: View; label: string; icon: typeof LayoutGrid }[] = [
 export function Sidebar({
   view,
   onNavigate,
+  onOpenSupport,
+  onOpenSettings,
   redCount,
   amberCount,
 }: {
   view: View;
   onNavigate: (v: View) => void;
+  onOpenSupport: () => void;
+  onOpenSettings: () => void;
   redCount: number;
   amberCount: number;
 }) {
@@ -96,13 +100,21 @@ export function Sidebar({
       </nav>
 
       <div className="mt-auto flex flex-col gap-1">
-        <button className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted-foreground hover:bg-sidebar-accent/50 hover:text-foreground transition-colors cursor-pointer">
+        <button
+          type="button"
+          onClick={onOpenSupport}
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted-foreground hover:bg-sidebar-accent/50 hover:text-foreground transition-colors cursor-pointer"
+        >
           <LifeBuoy size={19} />
           <span className="text-sm" style={{ fontWeight: 500 }}>
             Support
           </span>
         </button>
-        <button className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted-foreground hover:bg-sidebar-accent/50 hover:text-foreground transition-colors cursor-pointer">
+        <button
+          type="button"
+          onClick={onOpenSettings}
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted-foreground hover:bg-sidebar-accent/50 hover:text-foreground transition-colors cursor-pointer"
+        >
           <Settings size={19} />
           <span className="text-sm" style={{ fontWeight: 500 }}>
             Settings

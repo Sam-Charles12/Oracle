@@ -17,12 +17,16 @@ export function TopBar({
   searchValue,
   onSearchChange,
   notifications,
+  liveFeedEnabled,
+  showNotificationTimestamps,
 }: {
   title: string;
   subtitle: string;
   searchValue: string;
   onSearchChange: (value: string) => void;
   notifications: NotificationItem[];
+  liveFeedEnabled: boolean;
+  showNotificationTimestamps: boolean;
 }) {
   const unreadCount = notifications.length;
 
@@ -61,7 +65,7 @@ export function TopBar({
         >
           <Radio size={15} className="animate-pulse" />
           <span className="text-xs" style={{ fontWeight: 600 }}>
-            Live feed · synced
+            {liveFeedEnabled ? "Live feed · synced" : "Live feed · paused"}
           </span>
         </div>
         <div className="hidden sm:flex items-center gap-2 bg-card rounded-full border border-border px-3.5 py-2 w-56">
@@ -139,9 +143,11 @@ export function TopBar({
                         {notification.tone === "critical" ? "Red" : "Amber"}
                       </Badge>
                     </div>
-                    <div className="text-[11px] text-muted-foreground mt-2">
-                      Updated {notification.timestampLabel}
-                    </div>
+                    {showNotificationTimestamps && (
+                      <div className="text-[11px] text-muted-foreground mt-2">
+                        Updated {notification.timestampLabel}
+                      </div>
+                    )}
                   </div>
                 ))
               )}

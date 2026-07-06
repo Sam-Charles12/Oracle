@@ -6,6 +6,7 @@ import { Overview } from "./components/Overview";
 import { AssetDetail } from "./components/AssetDetail";
 import { Escalation } from "./components/Escalation";
 import { MultiPlant } from "./components/MultiPlant";
+import { AppPanels } from "./components/AppPanels";
 import { useOracleData } from "./components/useOracleData";
 import { escalationLabel, type Tier } from "./components/data";
 
@@ -22,6 +23,11 @@ export default function App() {
   const [view, setView] = useState<View>("overview");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
+  const [liveFeedEnabled, setLiveFeedEnabled] = useState(true);
+  const [showNotificationTimestamps, setShowNotificationTimestamps] =
+    useState(true);
 
   const counts = useMemo<Record<Tier, number>>(
     () => ({
@@ -110,6 +116,8 @@ export default function App() {
       <Sidebar
         view={view}
         onNavigate={navigate}
+        onOpenSupport={() => setSupportOpen(true)}
+        onOpenSettings={() => setSettingsOpen(true)}
         redCount={counts.Red}
         amberCount={counts.Amber}
       />
@@ -121,6 +129,8 @@ export default function App() {
           searchValue={searchTerm}
           onSearchChange={setSearchTerm}
           notifications={notifications}
+          liveFeedEnabled={liveFeedEnabled}
+          showNotificationTimestamps={showNotificationTimestamps}
         />
 
         <main className="flex-1 overflow-y-auto">
@@ -182,6 +192,17 @@ export default function App() {
           </AnimatePresence>
         </main>
       </div>
+
+      <AppPanels
+        settingsOpen={settingsOpen}
+        supportOpen={supportOpen}
+        onSettingsOpenChange={setSettingsOpen}
+        onSupportOpenChange={setSupportOpen}
+        liveFeedEnabled={liveFeedEnabled}
+        onLiveFeedEnabledChange={setLiveFeedEnabled}
+        showNotificationTimestamps={showNotificationTimestamps}
+        onShowNotificationTimestampsChange={setShowNotificationTimestamps}
+      />
     </div>
   );
 }
