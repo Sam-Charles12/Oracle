@@ -41,10 +41,14 @@ function KpiCard({
 
 export function Overview({
   assets,
+  totalAssets,
+  searchTerm,
   onOpen,
   onNavigate,
 }: {
   assets: Asset[];
+  totalAssets: number;
+  searchTerm: string;
   onOpen: (id: string) => void;
   onNavigate: (v: View) => void;
 }) {
@@ -121,13 +125,33 @@ export function Overview({
 
       <div className="flex items-center justify-between mt-8 mb-4">
         <h2 style={{ fontSize: 18, fontWeight: 700 }}>Monitored assets</h2>
-        <span className="text-sm text-muted-foreground">Sorted by urgency · Obajana plant</span>
+        <span className="text-sm text-muted-foreground">
+          {searchTerm.trim()
+            ? `Showing ${assets.length} of ${totalAssets} assets matching "${searchTerm.trim()}"`
+            : "Sorted by urgency · Obajana plant"}
+        </span>
       </div>
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-        {sorted.map((a) => (
-          <AssetCard key={a.asset_id} asset={a} onOpen={onOpen} />
-        ))}
-      </motion.div>
+      {sorted.length > 0 ? (
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+          {sorted.map((a) => (
+            <AssetCard key={a.asset_id} asset={a} onOpen={onOpen} />
+          ))}
+        </motion.div>
+      ) : (
+        <div className="rounded-2xl border border-dashed border-border bg-card px-6 py-14 text-center">
+          <div className="text-base font-semibold">No assets match this search</div>
+          <p className="text-sm text-muted-foreground mt-2">
+            Try a different asset name, plant, tier, or risk label.
+          </p>
+          <button
+            type="button"
+            onClick={() => onNavigate("overview")}
+            className="mt-4 rounded-full border border-border px-4 py-2 text-sm font-medium hover:bg-muted transition-colors"
+          >
+            Back to overview
+          </button>
+        </div>
+      )}
     </div>
   );
 }

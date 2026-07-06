@@ -7,12 +7,21 @@ import { AssetDetail } from "./components/AssetDetail";
 import { Escalation } from "./components/Escalation";
 import { MultiPlant } from "./components/MultiPlant";
 import { useOracleData } from "./components/useOracleData";
-import type { Tier } from "./components/data";
+import { escalationLabel, type Tier } from "./components/data";
+
+type NotificationItem = {
+  id: string;
+  title: string;
+  detail: string;
+  tone: "critical" | "warning";
+  timestamp: string;
+};
 
 export default function App() {
   const { assets } = useOracleData();
   const [view, setView] = useState<View>("overview");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const counts = useMemo<Record<Tier, number>>(
     () => ({
@@ -20,6 +29,42 @@ export default function App() {
       Amber: assets.filter((a) => a.tier === "Amber").length,
       Red: assets.filter((a) => a.tier === "Red").length,
     }),
+    [assets],
+  );
+
+  const visibleAssets = useMemo(() => {
+    const term = searchTerm.trim().toLowerCase();
+
+    if (!term) return assets;
+
+    return assets.filter((asset) => {
+      const searchable = [
+        asset.asset_name,
+        asset.plant,
+        asset.tier,
+        asset.pf_zone_label,
+        asset.advisory.recommendation,
+        asset.escalation.status,
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchable.includes(term);
+    });
+  }, [assets, searchTerm]);
+
+  const notifications = useMemo<NotificationItem[]>(
+    () =>
+      assets
+        .filter((asset) => asset.tier !== "green")
+        .sort((a, b) => b.risk_score - a.risk_score)
+        .map((asset) => ({
+          id: asset.asset_id,
+          title: asset.asset_name,
+          detail: `${escalationLabel[asset.escalation.status]} · ${asset.pf_zone_label}`,
+          tone: asset.tier === "red" ? "critical" : "warning",
+          timestamp: asset.last_updated,
+        })),
     [assets],
   );
 
@@ -66,7 +111,13 @@ export default function App() {
       />
 
       <div className="flex-1 flex flex-col min-w-0">
-        <TopBar title={header.title} subtitle={header.subtitle} />
+        <TopBar
+          title={header.title}
+          subtitle={header.subtitle}
+          searchValue={searchTerm}
+          onSearchChange={setSearchTerm}
+          notifications={notifications}
+        />
 
         <main className="flex-1 overflow-y-auto">
           <AnimatePresence mode="wait">
@@ -78,7 +129,13 @@ export default function App() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Overview assets={assets} onOpen={openAsset} onNavigate={navigate} />
+                <Overview
+                  assets={visibleAssets}
+                  totalAssets={assets.length}
+                  searchTerm={searchTerm}
+                  onOpen={openAsset}
+                  onNavigate={navigate}
+                />
               </motion.div>
             )}
 
