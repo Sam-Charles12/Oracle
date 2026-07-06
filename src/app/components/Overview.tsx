@@ -43,12 +43,14 @@ export function Overview({
   assets,
   totalAssets,
   searchTerm,
+  onClearSearch,
   onOpen,
   onNavigate,
 }: {
   assets: Asset[];
   totalAssets: number;
   searchTerm: string;
+  onClearSearch: () => void;
   onOpen: (id: string) => void;
   onNavigate: (v: View) => void;
 }) {
@@ -145,10 +147,10 @@ export function Overview({
           </p>
           <button
             type="button"
-            onClick={() => onNavigate("overview")}
+            onClick={onClearSearch}
             className="mt-4 rounded-full border border-border px-4 py-2 text-sm font-medium hover:bg-muted transition-colors"
           >
-            Back to overview
+            Clear search
           </button>
         </div>
       )}

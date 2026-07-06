@@ -43,17 +43,26 @@ export function TopBar({
   return (
     <header className="flex items-center gap-4 px-6 md:px-8 py-5 border-b border-border">
       <div className="min-w-0">
-        <h1 className="truncate" style={{ fontSize: 22, fontWeight: 700 }}>{title}</h1>
-        <p className="text-sm text-muted-foreground mt-0.5 truncate">{subtitle}</p>
+        <h1 className="truncate" style={{ fontSize: 22, fontWeight: 700 }}>
+          {title}
+        </h1>
+        <p className="text-sm text-muted-foreground mt-0.5 truncate">
+          {subtitle}
+        </p>
       </div>
 
       <div className="ml-auto flex items-center gap-2.5">
         <div
           className="hidden lg:flex items-center gap-2 rounded-full px-3.5 py-2"
-          style={{ backgroundColor: "var(--risk-green-soft)", color: "var(--risk-green)" }}
+          style={{
+            backgroundColor: "var(--risk-green-soft)",
+            color: "var(--risk-green)",
+          }}
         >
           <Radio size={15} className="animate-pulse" />
-          <span className="text-xs" style={{ fontWeight: 600 }}>Live feed · synced</span>
+          <span className="text-xs" style={{ fontWeight: 600 }}>
+            Live feed · synced
+          </span>
         </div>
         <div className="hidden sm:flex items-center gap-2 bg-card rounded-full border border-border px-3.5 py-2 w-56">
           <Search size={16} className="text-muted-foreground shrink-0" />
@@ -75,7 +84,11 @@ export function TopBar({
               {unreadCount > 0 && (
                 <span
                   className="absolute top-2 right-2 rounded-full"
-                  style={{ width: 7, height: 7, backgroundColor: "var(--risk-red)" }}
+                  style={{
+                    width: 7,
+                    height: 7,
+                    backgroundColor: "var(--risk-red)",
+                  }}
                 />
               )}
             </button>
@@ -84,9 +97,13 @@ export function TopBar({
             <div className="border-b border-border px-4 py-3">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <div style={{ fontSize: 15, fontWeight: 700 }}>Notifications</div>
+                  <div style={{ fontSize: 15, fontWeight: 700 }}>
+                    Notifications
+                  </div>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    {unreadCount > 0 ? `${unreadCount} active escalation${unreadCount === 1 ? "" : "s"}` : "No active notifications"}
+                    {unreadCount > 0
+                      ? `${unreadCount} active escalation${unreadCount === 1 ? "" : "s"}`
+                      : "No active notifications"}
                   </p>
                 </div>
                 <Badge variant="secondary">Live</Badge>
@@ -105,14 +122,26 @@ export function TopBar({
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <div className="text-sm font-semibold truncate">{notification.title}</div>
-                        <div className="text-xs text-muted-foreground mt-1">{notification.detail}</div>
+                        <div className="text-sm font-semibold truncate">
+                          {notification.title}
+                        </div>
+                        <div className="text-xs text-muted-foreground mt-1">
+                          {notification.detail}
+                        </div>
                       </div>
-                      <Badge variant={notification.tone === "critical" ? "destructive" : "secondary"}>
+                      <Badge
+                        variant={
+                          notification.tone === "critical"
+                            ? "destructive"
+                            : "secondary"
+                        }
+                      >
                         {notification.tone === "critical" ? "Red" : "Amber"}
                       </Badge>
                     </div>
-                    <div className="text-[11px] text-muted-foreground mt-2">Updated {notification.timestampLabel}</div>
+                    <div className="text-[11px] text-muted-foreground mt-2">
+                      Updated {notification.timestampLabel}
+                    </div>
                   </div>
                 ))
               )}

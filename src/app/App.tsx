@@ -84,7 +84,8 @@ export default function App() {
   const headers: Record<View, { title: string; subtitle: string }> = {
     overview: {
       title: "Fleet Overview",
-      subtitle: "Condition-based risk & remaining useful life across monitored equipment",
+      subtitle:
+        "Condition-based risk & remaining useful life across monitored equipment",
     },
     escalation: {
       title: "Escalation Workflow",
@@ -98,7 +99,10 @@ export default function App() {
 
   const header =
     selected && view === "overview"
-      ? { title: "Asset Detail", subtitle: "Drilling into the driving signals behind the score" }
+      ? {
+          title: "Asset Detail",
+          subtitle: "Drilling into the driving signals behind the score",
+        }
       : headers[view];
 
   return (
@@ -133,6 +137,7 @@ export default function App() {
                   assets={visibleAssets}
                   totalAssets={assets.length}
                   searchTerm={searchTerm}
+                  onClearSearch={() => setSearchTerm("")}
                   onOpen={openAsset}
                   onNavigate={navigate}
                 />
