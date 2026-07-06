@@ -77,7 +77,7 @@ export function TopBar({
           <PopoverTrigger asChild>
             <button
               type="button"
-              className="relative grid place-items-center rounded-full bg-card border border-border size-10 hover:bg-muted transition-colors"
+              className="relative grid place-items-center rounded-full bg-card border border-border size-10 hover:bg-muted transition-colors cursor-pointer"
               aria-label="Open notifications"
             >
               <Bell size={17} />

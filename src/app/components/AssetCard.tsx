@@ -21,7 +21,7 @@ export function AssetCard({
       onClick={() => onOpen(asset.asset_id)}
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
-      className="group text-left bg-card rounded-2xl p-5 border border-border shadow-[0_1px_2px_rgba(31,36,33,0.04)] hover:shadow-[0_12px_32px_rgba(31,36,33,0.10)] transition-shadow relative"
+      className="group text-left bg-card rounded-2xl p-5 border border-border shadow-[0_1px_2px_rgba(31,36,33,0.04)] hover:shadow-[0_12px_32px_rgba(31,36,33,0.10)] transition-shadow relative cursor-pointer"
     >
       <div className="flex items-start justify-between gap-3 mb-5">
         <div className="min-w-0 flex-1">
@@ -40,23 +40,35 @@ export function AssetCard({
       {/* Primary metrics grid */}
       <div className="grid grid-cols-2 gap-6 py-5 border-y border-border">
         <div>
-          <div className="text-xs text-muted-foreground mb-1.5">Remaining useful life</div>
+          <div className="text-xs text-muted-foreground mb-1.5">
+            Remaining useful life
+          </div>
           <div className="flex items-baseline gap-1.5">
             <span
               className="tabular-nums"
-              style={{ fontFamily: "var(--font-display)", fontSize: 32, fontWeight: 800, lineHeight: 1 }}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 32,
+                fontWeight: 800,
+                lineHeight: 1,
+              }}
             >
               {asset.rul_estimate_days}
             </span>
             <span className="text-sm text-muted-foreground">days</span>
           </div>
-          <p className="text-xs text-muted-foreground mt-1">{asset.rul_display}</p>
+          <p className="text-xs text-muted-foreground mt-1">
+            {asset.rul_display}
+          </p>
         </div>
-        
+
         <div className="border-l border-border pl-6">
           <div className="text-xs text-muted-foreground mb-1.5">Risk score</div>
           <div className="flex items-center gap-1.5">
-            <span className="tabular-nums" style={{ fontSize: 32, fontWeight: 700, lineHeight: 1 }}>
+            <span
+              className="tabular-nums"
+              style={{ fontSize: 32, fontWeight: 700, lineHeight: 1 }}
+            >
               {asset.risk_score}
             </span>
             <span className="text-xs text-muted-foreground">/ 100</span>
@@ -86,8 +98,12 @@ export function AssetCard({
       <div className="py-4 border-b border-border">
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-xs font-medium mb-0.5">{asset.pf_zone_label}</div>
-            <div className="text-xs text-muted-foreground">P-F curve position</div>
+            <div className="text-xs font-medium mb-0.5">
+              {asset.pf_zone_label}
+            </div>
+            <div className="text-xs text-muted-foreground">
+              P-F curve position
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-8 w-16">

@@ -1,5 +1,11 @@
 import { motion } from "motion/react";
-import { FileText, Search, ClipboardCheck, ArrowRight, Clock } from "lucide-react";
+import {
+  FileText,
+  Search,
+  ClipboardCheck,
+  ArrowRight,
+  Clock,
+} from "lucide-react";
 import {
   escalationLabel,
   tierColor,
@@ -10,14 +16,26 @@ import {
 } from "./data";
 import { RiskBadge } from "./RiskBadge";
 
-const statusMeta: Record<EscalationStatus, { icon: typeof FileText; blurb: string }> = {
-  work_order_generated:   { icon: FileText,       blurb: "Immediate work order generated" },
-  flagged_for_inspection: { icon: Search,          blurb: "Queued for planner inspection"  },
-  logged_only:            { icon: ClipboardCheck,  blurb: "Logged for baseline monitoring" },
+const statusMeta: Record<
+  EscalationStatus,
+  { icon: typeof FileText; blurb: string }
+> = {
+  work_order_generated: {
+    icon: FileText,
+    blurb: "Immediate work order generated",
+  },
+  flagged_for_inspection: {
+    icon: Search,
+    blurb: "Queued for planner inspection",
+  },
+  logged_only: {
+    icon: ClipboardCheck,
+    blurb: "Logged for baseline monitoring",
+  },
 };
 
 const tierToStatus: Record<Tier, EscalationStatus> = {
-  red:   "work_order_generated",
+  red: "work_order_generated",
   amber: "flagged_for_inspection",
   green: "logged_only",
 };
@@ -46,12 +64,16 @@ function ZoneColumn({
             </span>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold capitalize text-foreground">{tier} zone</span>
+                <span className="font-bold capitalize text-foreground">
+                  {tier} zone
+                </span>
                 <span className="tabular-nums text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-semibold">
                   {assets.length}
                 </span>
               </div>
-              <span className="text-xs text-muted-foreground">{meta.blurb}</span>
+              <span className="text-xs text-muted-foreground">
+                {meta.blurb}
+              </span>
             </div>
           </div>
         </div>
@@ -70,37 +92,50 @@ function ZoneColumn({
           <button
             key={a.asset_id}
             onClick={() => onOpen(a.asset_id)}
-            className="text-left rounded-xl border border-border p-4 hover:shadow-[0_6px_18px_rgba(31,36,33,0.08)] transition-shadow group bg-card"
+            className="text-left rounded-xl border border-border p-4 hover:shadow-[0_6px_18px_rgba(31,36,33,0.08)] transition-shadow group bg-card cursor-pointer"
           >
             <div className="flex items-start justify-between gap-3 mb-3">
               <div className="flex-1 min-w-0">
-                <span className="text-sm font-semibold block truncate">{a.asset_name}</span>
+                <span className="text-sm font-semibold block truncate">
+                  {a.asset_name}
+                </span>
                 <span className="text-xs text-muted-foreground">{a.plant}</span>
               </div>
               <RiskBadge tier={a.tier} />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-3 py-3 border-y border-border">
               <div>
                 <div className="text-xs text-muted-foreground mb-1">RUL</div>
-                <div className="text-sm font-bold">{a.rul_estimate_days} days</div>
+                <div className="text-sm font-bold">
+                  {a.rul_estimate_days} days
+                </div>
               </div>
               <div>
-                <div className="text-xs text-muted-foreground mb-1">Risk score</div>
+                <div className="text-xs text-muted-foreground mb-1">
+                  Risk score
+                </div>
                 <div className="text-sm font-bold">{a.risk_score} / 100</div>
               </div>
             </div>
 
             <div className="flex items-center justify-between mt-3">
-              <span className="text-xs text-muted-foreground">{a.pf_zone_label}</span>
-              <ArrowRight size={14} className="text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
+              <span className="text-xs text-muted-foreground">
+                {a.pf_zone_label}
+              </span>
+              <ArrowRight
+                size={14}
+                className="text-muted-foreground group-hover:translate-x-0.5 transition-transform"
+              />
             </div>
 
             {tier === "red" && (
               <div className="mt-3 pt-3 border-t border-border">
                 <div className="flex items-center gap-2 text-xs font-medium text-foreground">
                   <FileText size={12} className="text-muted-foreground" />
-                  <span>WO-{a.asset_id.slice(0, 3).toUpperCase()}-{a.risk_score}</span>
+                  <span>
+                    WO-{a.asset_id.slice(0, 3).toUpperCase()}-{a.risk_score}
+                  </span>
                   <span className="text-muted-foreground">· Dispatched</span>
                 </div>
               </div>
@@ -125,7 +160,7 @@ export function Escalation({
       .sort((a, b) => a.rul_estimate_days - b.rul_estimate_days);
 
   const counts: Record<Tier, number> = {
-    red:   byTier("red").length,
+    red: byTier("red").length,
     amber: byTier("amber").length,
     green: byTier("green").length,
   };
@@ -144,10 +179,23 @@ export function Escalation({
           <span className="text-sm font-semibold">Live escalation state</span>
         </div>
         <div className="flex items-center gap-6 text-sm">
-          {([["red", "Critical"], ["amber", "Warning"], ["green", "Healthy"]] as [Tier, string][]).map(([t, label]) => (
+          {(
+            [
+              ["red", "Critical"],
+              ["amber", "Warning"],
+              ["green", "Healthy"],
+            ] as [Tier, string][]
+          ).map(([t, label]) => (
             <div key={t} className="flex items-center gap-2">
               <div className="flex items-baseline gap-1.5">
-                <span className="tabular-nums" style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 800 }}>
+                <span
+                  className="tabular-nums"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 22,
+                    fontWeight: 800,
+                  }}
+                >
                   {counts[t]}
                 </span>
                 <span className="text-muted-foreground">{label}</span>
@@ -159,13 +207,13 @@ export function Escalation({
           {counts.red > 0
             ? `${counts.red} asset${counts.red > 1 ? "s" : ""} require immediate escalation to the maintenance manager.`
             : counts.amber > 0
-            ? `${counts.amber} asset${counts.amber > 1 ? "s" : ""} flagged for inspection within 5 days.`
-            : "All assets nominal — routine monitoring only."}
+              ? `${counts.amber} asset${counts.amber > 1 ? "s" : ""} flagged for inspection within 5 days.`
+              : "All assets nominal — routine monitoring only."}
         </p>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        <ZoneColumn tier="red"   assets={byTier("red")}   onOpen={onOpen} />
+        <ZoneColumn tier="red" assets={byTier("red")} onOpen={onOpen} />
         <ZoneColumn tier="amber" assets={byTier("amber")} onOpen={onOpen} />
         <ZoneColumn tier="green" assets={byTier("green")} onOpen={onOpen} />
       </div>
