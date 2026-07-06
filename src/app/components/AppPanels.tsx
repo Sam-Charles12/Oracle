@@ -20,6 +20,8 @@ export function AppPanels({
   onLiveFeedEnabledChange,
   showNotificationTimestamps,
   onShowNotificationTimestampsChange,
+  theme,
+  onThemeChange,
 }: {
   settingsOpen: boolean;
   supportOpen: boolean;
@@ -29,6 +31,8 @@ export function AppPanels({
   onLiveFeedEnabledChange: (value: boolean) => void;
   showNotificationTimestamps: boolean;
   onShowNotificationTimestampsChange: (value: boolean) => void;
+  theme: "light" | "dark";
+  onThemeChange: (value: "light" | "dark") => void;
 }) {
   const copySupportText = async () => {
     const text = [
@@ -54,6 +58,41 @@ export function AppPanels({
           </DialogHeader>
 
           <div className="space-y-4">
+            <div className="rounded-2xl border border-border bg-card px-4 py-3">
+              <div className="flex items-center justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="text-sm font-semibold">Appearance</div>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Switch between light and dark mode.
+                  </p>
+                </div>
+                <div className="flex rounded-full border border-border bg-background p-1">
+                  <button
+                    type="button"
+                    onClick={() => onThemeChange("light")}
+                    className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer ${
+                      theme === "light"
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    Light
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onThemeChange("dark")}
+                    className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer ${
+                      theme === "dark"
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    Dark
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-card px-4 py-3">
               <div className="min-w-0">
                 <div className="flex items-center gap-2">

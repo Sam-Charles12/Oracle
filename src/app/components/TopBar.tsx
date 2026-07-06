@@ -1,7 +1,16 @@
-import { Search, Bell, Radio } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { Search, Bell, Radio, Menu } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "./ui/sheet";
+import { cn } from "./ui/utils";
+import { type View } from "./Sidebar";
 
 type NotificationItem = {
   id: string;
@@ -14,6 +23,10 @@ type NotificationItem = {
 export function TopBar({
   title,
   subtitle,
+  view,
+  onNavigate,
+  onOpenSupport,
+  onOpenSettings,
   searchValue,
   onSearchChange,
   notifications,
@@ -22,13 +35,23 @@ export function TopBar({
 }: {
   title: string;
   subtitle: string;
+  view: View;
+  onNavigate: (v: View) => void;
+  onOpenSupport: () => void;
+  onOpenSettings: () => void;
   searchValue: string;
   onSearchChange: (value: string) => void;
   notifications: NotificationItem[];
   liveFeedEnabled: boolean;
   showNotificationTimestamps: boolean;
 }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const unreadCount = notifications.length;
+  const navigationItems: { id: View; label: string }[] = [
+    { id: "overview", label: "Fleet Overview" },
+    { id: "escalation", label: "Escalations" },
+    { id: "plants", label: "Multi-Plant" },
+  ];
 
   const formattedNotifications = useMemo(
     () =>
@@ -56,6 +79,85 @@ export function TopBar({
       </div>
 
       <div className="ml-auto flex items-center gap-2.5">
+        <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+          <button
+            type="button"
+            className="md:hidden relative grid place-items-center rounded-full bg-card border border-border size-10 hover:bg-muted transition-colors cursor-pointer"
+            aria-label="Open navigation menu"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <Menu size={18} />
+          </button>
+          <SheetContent side="left" className="w-[min(88vw,20rem)]">
+            <SheetHeader>
+              <SheetTitle>Oracle</SheetTitle>
+              <SheetDescription>
+                Navigate the fleet dashboard and access support tools.
+              </SheetDescription>
+            </SheetHeader>
+
+            <div className="px-4 pt-2 space-y-4">
+              <div className="flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2">
+                <Search size={16} className="text-muted-foreground shrink-0" />
+                <input
+                  placeholder="Search assets…"
+                  value={searchValue}
+                  onChange={(event) => onSearchChange(event.target.value)}
+                  className="bg-transparent outline-none text-sm w-full placeholder:text-muted-foreground"
+                />
+              </div>
+
+              <div className="space-y-1">
+                {navigationItems.map((item) => {
+                  const active = view === item.id;
+
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => {
+                        onNavigate(item.id);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={cn(
+                        "w-full flex items-center rounded-xl px-3 py-2.5 text-left transition-colors cursor-pointer",
+                        active
+                          ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                          : "text-foreground hover:bg-muted",
+                      )}
+                    >
+                      <span className="text-sm font-medium">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="space-y-1 pt-2 border-t border-border">
+                <button
+                  type="button"
+                  onClick={() => {
+                    onOpenSupport();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full flex items-center rounded-xl px-3 py-2.5 text-left text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
+                >
+                  <span className="text-sm font-medium">Support</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onOpenSettings();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full flex items-center rounded-xl px-3 py-2.5 text-left text-muted-foreground hover:bg-muted hover:text-foreground transition-colors cursor-pointer"
+                >
+                  <span className="text-sm font-medium">Settings</span>
+                </button>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+
         <div
           className="hidden lg:flex items-center gap-2 rounded-full px-3.5 py-2"
           style={{

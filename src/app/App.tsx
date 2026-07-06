@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Sidebar, type View } from "./components/Sidebar";
 import { TopBar } from "./components/TopBar";
@@ -23,11 +23,28 @@ export default function App() {
   const [view, setView] = useState<View>("overview");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+
+    const savedTheme = window.localStorage.getItem("oracle-theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      return savedTheme;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  });
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
   const [liveFeedEnabled, setLiveFeedEnabled] = useState(true);
   const [showNotificationTimestamps, setShowNotificationTimestamps] =
     useState(true);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem("oracle-theme", theme);
+  }, [theme]);
 
   const counts = useMemo<Record<Tier, number>>(
     () => ({
@@ -126,6 +143,10 @@ export default function App() {
         <TopBar
           title={header.title}
           subtitle={header.subtitle}
+          view={view}
+          onNavigate={navigate}
+          onOpenSupport={() => setSupportOpen(true)}
+          onOpenSettings={() => setSettingsOpen(true)}
           searchValue={searchTerm}
           onSearchChange={setSearchTerm}
           notifications={notifications}
@@ -202,6 +223,8 @@ export default function App() {
         onLiveFeedEnabledChange={setLiveFeedEnabled}
         showNotificationTimestamps={showNotificationTimestamps}
         onShowNotificationTimestampsChange={setShowNotificationTimestamps}
+        theme={theme}
+        onThemeChange={setTheme}
       />
     </div>
   );
