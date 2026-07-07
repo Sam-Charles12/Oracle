@@ -22,6 +22,10 @@ export function Sidebar({
   onOpenSettings,
   redCount,
   amberCount,
+  userName,
+  userInitials,
+  userRole,
+  userPlant,
 }: {
   view: View;
   onNavigate: (v: View) => void;
@@ -29,6 +33,10 @@ export function Sidebar({
   onOpenSettings: () => void;
   redCount: number;
   amberCount: number;
+  userName: string;
+  userInitials: string;
+  userRole: string;
+  userPlant: string;
 }) {
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col bg-sidebar border-r border-sidebar-border px-4 py-6">
@@ -132,14 +140,14 @@ export function Sidebar({
               fontSize: 14,
             }}
           >
-            AO
+            {userInitials}
           </div>
           <div className="min-w-0">
             <div className="text-sm truncate" style={{ fontWeight: 600 }}>
-              Adaeze Okafor
+              {userName}
             </div>
             <div className="text-xs text-muted-foreground truncate">
-              Plant Manager · Obajana
+              {userRole} · {userPlant}
             </div>
           </div>
         </div>
@@ -147,3 +155,4 @@ export function Sidebar({
     </aside>
   );
 }
+

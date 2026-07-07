@@ -1,0 +1,158 @@
+{
+  "asset_id": "kiln_id_fan",
+  "asset_name": "Kiln Id Fan",
+  "plant": "Obajana",
+  "tier": "amber",
+  "risk_score": 20.8,
+  "rul_estimate_days": 2.1,
+  "rul_display": "\u22482.1 days at current load",
+  "pf_zone": 2,
+  "pf_zone_label": "Early Degradation",
+  "driving_factors": [
+    {
+      "factor": "vibration_trend",
+      "label": "Vibration Trend",
+      "score": 1.0,
+      "weight": 0.3,
+      "trend": "rising",
+      "detail": "Signal at 0.1368, threshold 0.0933"
+    }
+  ],
+  "trend_data": [
+    {
+      "day": 0,
+      "health_signal": 0.1042
+    },
+    {
+      "day": 1,
+      "health_signal": 0.1123
+    },
+    {
+      "day": 2,
+      "health_signal": 0.1204
+    },
+    {
+      "day": 3,
+      "health_signal": 0.1176
+    },
+    {
+      "day": 4,
+      "health_signal": 0.1222
+    },
+    {
+      "day": 5,
+      "health_signal": 0.1163
+    },
+    {
+      "day": 6,
+      "health_signal": 0.119
+    },
+    {
+      "day": 7,
+      "health_signal": 0.1232
+    },
+    {
+      "day": 8,
+      "health_signal": 0.1233
+    },
+    {
+      "day": 9,
+      "health_signal": 0.1224
+    },
+    {
+      "day": 10,
+      "health_signal": 0.1265
+    },
+    {
+      "day": 11,
+      "health_signal": 0.1283
+    },
+    {
+      "day": 12,
+      "health_signal": 0.1292
+    },
+    {
+      "day": 13,
+      "health_signal": 0.1146
+    },
+    {
+      "day": 14,
+      "health_signal": 0.1211
+    },
+    {
+      "day": 15,
+      "health_signal": 0.1225
+    },
+    {
+      "day": 16,
+      "health_signal": 0.123
+    },
+    {
+      "day": 17,
+      "health_signal": 0.1172
+    },
+    {
+      "day": 18,
+      "health_signal": 0.1326
+    },
+    {
+      "day": 19,
+      "health_signal": 0.1217
+    },
+    {
+      "day": 20,
+      "health_signal": 0.1278
+    },
+    {
+      "day": 21,
+      "health_signal": 0.116
+    },
+    {
+      "day": 22,
+      "health_signal": 0.1261
+    },
+    {
+      "day": 23,
+      "health_signal": 0.128
+    },
+    {
+      "day": 24,
+      "health_signal": 0.1253
+    },
+    {
+      "day": 25,
+      "health_signal": 0.1343
+    },
+    {
+      "day": 26,
+      "health_signal": 0.1432
+    },
+    {
+      "day": 27,
+      "health_signal": 0.1276
+    },
+    {
+      "day": 28,
+      "health_signal": 0.1283
+    },
+    {
+      "day": 29,
+      "health_signal": 0.1421
+    },
+    {
+      "day": 30,
+      "health_signal": 0.1368
+    }
+  ],
+  "advisory": {
+    "recommendation": "PENDING \u2014 Ibrahim's advisory layer",
+    "urgency": "medium",
+    "suggested_action_by": null
+  },
+  "escalation": {
+    "status": "flagged_for_inspection",
+    "queue": "amber_queue",
+    "notify": "maintenance_planner"
+  },
+  "last_updated": "2026-07-07T21:53:30.083901+00:00"
+}

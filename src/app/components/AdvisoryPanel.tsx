@@ -42,7 +42,7 @@ export function AdvisoryPanel({
         <div className="flex items-center justify-between pt-3 border-t border-border text-xs">
           <div>
             <div className="text-muted-foreground mb-1">Act by</div>
-            <div className="font-semibold">{advisory.suggested_action_by}</div>
+            <div className="font-semibold">{advisory.suggested_action_by ?? "Pending — awaiting advisory"}</div>
           </div>
           <div>
             <div className="text-muted-foreground mb-1 text-right">Urgency</div>

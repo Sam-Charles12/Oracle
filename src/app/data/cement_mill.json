@@ -1,0 +1,158 @@
+{
+  "asset_id": "cement_mill",
+  "asset_name": "Cement Mill",
+  "plant": "Obajana",
+  "tier": "red",
+  "risk_score": 91.0,
+  "rul_estimate_days": 0.1,
+  "rul_display": "\u22480.1 days at current load",
+  "pf_zone": 4,
+  "pf_zone_label": "Imminent Failure",
+  "driving_factors": [
+    {
+      "factor": "vibration_trend",
+      "label": "Vibration Trend",
+      "score": 4.5,
+      "weight": 0.3,
+      "trend": "rising",
+      "detail": "Signal at 0.5457, threshold 0.1015"
+    }
+  ],
+  "trend_data": [
+    {
+      "day": 0,
+      "health_signal": 0.4387
+    },
+    {
+      "day": 1,
+      "health_signal": 0.4502
+    },
+    {
+      "day": 2,
+      "health_signal": 0.4447
+    },
+    {
+      "day": 3,
+      "health_signal": 0.4515
+    },
+    {
+      "day": 4,
+      "health_signal": 0.4533
+    },
+    {
+      "day": 5,
+      "health_signal": 0.4578
+    },
+    {
+      "day": 6,
+      "health_signal": 0.4652
+    },
+    {
+      "day": 7,
+      "health_signal": 0.4619
+    },
+    {
+      "day": 8,
+      "health_signal": 0.4617
+    },
+    {
+      "day": 9,
+      "health_signal": 0.4765
+    },
+    {
+      "day": 10,
+      "health_signal": 0.4749
+    },
+    {
+      "day": 11,
+      "health_signal": 0.4803
+    },
+    {
+      "day": 12,
+      "health_signal": 0.4807
+    },
+    {
+      "day": 13,
+      "health_signal": 0.4873
+    },
+    {
+      "day": 14,
+      "health_signal": 0.4927
+    },
+    {
+      "day": 15,
+      "health_signal": 0.4965
+    },
+    {
+      "day": 16,
+      "health_signal": 0.4935
+    },
+    {
+      "day": 17,
+      "health_signal": 0.4966
+    },
+    {
+      "day": 18,
+      "health_signal": 0.5032
+    },
+    {
+      "day": 19,
+      "health_signal": 0.506
+    },
+    {
+      "day": 20,
+      "health_signal": 0.511
+    },
+    {
+      "day": 21,
+      "health_signal": 0.5095
+    },
+    {
+      "day": 22,
+      "health_signal": 0.5067
+    },
+    {
+      "day": 23,
+      "health_signal": 0.5214
+    },
+    {
+      "day": 24,
+      "health_signal": 0.5264
+    },
+    {
+      "day": 25,
+      "health_signal": 0.5296
+    },
+    {
+      "day": 26,
+      "health_signal": 0.5374
+    },
+    {
+      "day": 27,
+      "health_signal": 0.5379
+    },
+    {
+      "day": 28,
+      "health_signal": 0.5368
+    },
+    {
+      "day": 29,
+      "health_signal": 0.5461
+    },
+    {
+      "day": 30,
+      "health_signal": 0.5457
+    }
+  ],
+  "advisory": {
+    "recommendation": "PENDING \u2014 Ibrahim's advisory layer",
+    "urgency": "high",
+    "suggested_action_by": null
+  },
+  "escalation": {
+    "status": "work_order_generated",
+    "queue": "red_queue",
+    "notify": "maintenance_manager"
+  },
+  "last_updated": "2026-07-07T21:53:30.090827+00:00"
+}

@@ -1,0 +1,158 @@
+{
+  "asset_id": "raw_mill",
+  "asset_name": "Raw Mill",
+  "plant": "Obajana",
+  "tier": "green",
+  "risk_score": 15.5,
+  "rul_estimate_days": 63.9,
+  "rul_display": "\u224863.9 days at current load",
+  "pf_zone": 1,
+  "pf_zone_label": "Normal",
+  "driving_factors": [
+    {
+      "factor": "vibration_trend",
+      "label": "Vibration Trend",
+      "score": 0.8,
+      "weight": 0.3,
+      "trend": "stable",
+      "detail": "Signal at 0.0883, threshold 0.0913"
+    }
+  ],
+  "trend_data": [
+    {
+      "day": 0,
+      "health_signal": 0.0833
+    },
+    {
+      "day": 1,
+      "health_signal": 0.0862
+    },
+    {
+      "day": 2,
+      "health_signal": 0.083
+    },
+    {
+      "day": 3,
+      "health_signal": 0.0835
+    },
+    {
+      "day": 4,
+      "health_signal": 0.0765
+    },
+    {
+      "day": 5,
+      "health_signal": 0.0765
+    },
+    {
+      "day": 6,
+      "health_signal": 0.0742
+    },
+    {
+      "day": 7,
+      "health_signal": 0.0849
+    },
+    {
+      "day": 8,
+      "health_signal": 0.079
+    },
+    {
+      "day": 9,
+      "health_signal": 0.0856
+    },
+    {
+      "day": 10,
+      "health_signal": 0.0769
+    },
+    {
+      "day": 11,
+      "health_signal": 0.0782
+    },
+    {
+      "day": 12,
+      "health_signal": 0.0804
+    },
+    {
+      "day": 13,
+      "health_signal": 0.0837
+    },
+    {
+      "day": 14,
+      "health_signal": 0.0802
+    },
+    {
+      "day": 15,
+      "health_signal": 0.0808
+    },
+    {
+      "day": 16,
+      "health_signal": 0.0801
+    },
+    {
+      "day": 17,
+      "health_signal": 0.0807
+    },
+    {
+      "day": 18,
+      "health_signal": 0.0755
+    },
+    {
+      "day": 19,
+      "health_signal": 0.0803
+    },
+    {
+      "day": 20,
+      "health_signal": 0.0793
+    },
+    {
+      "day": 21,
+      "health_signal": 0.0798
+    },
+    {
+      "day": 22,
+      "health_signal": 0.082
+    },
+    {
+      "day": 23,
+      "health_signal": 0.0773
+    },
+    {
+      "day": 24,
+      "health_signal": 0.0797
+    },
+    {
+      "day": 25,
+      "health_signal": 0.0788
+    },
+    {
+      "day": 26,
+      "health_signal": 0.0817
+    },
+    {
+      "day": 27,
+      "health_signal": 0.0831
+    },
+    {
+      "day": 28,
+      "health_signal": 0.0762
+    },
+    {
+      "day": 29,
+      "health_signal": 0.0823
+    },
+    {
+      "day": 30,
+      "health_signal": 0.0883
+    }
+  ],
+  "advisory": {
+    "recommendation": "PENDING \u2014 Ibrahim's advisory layer",
+    "urgency": "low",
+    "suggested_action_by": null
+  },
+  "escalation": {
+    "status": "logged_only",
+    "queue": "green_queue",
+    "notify": "none"
+  },
+  "last_updated": "2026-07-07T21:53:30.070369+00:00"
+}
