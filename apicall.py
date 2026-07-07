@@ -96,41 +96,7 @@ Return ONLY a valid JSON object matching the exact schema below. Do not include 
 # 3. Define the Incoming Layer 2 Data Dictionary
 # (This typically comes from your database or an upstream API)
 asset_data = {
-    "asset_id": "asset_001",
-    "asset_name": "kiln",
-    "plant": "Obajana Cement Plant",
-    "tier": "Amber",
-    "risk_score": 71.4,
-    "rul_estimate_days": 8,
-    "rul_display": "≈8 days remaining",
-    "pf_zone": 3,
-    "pf_zone_label": "Accelerating Degradation",
-    "driving_factors": [
-        {
-            "factor": "vibration_trend",
-            "label": "Vibration Trend",
-            "score": 4.7,
-            "weight": 0.30,
-            "trend": "rising",
-            "detail": "Overall vibration increased by 19% over the past 14 days."
-        },
-        {
-            "factor": "load_vs_capacity",
-            "label": "Load vs Capacity",
-            "score": 4.2,
-            "weight": 0.25,
-            "trend": "rising",
-            "detail": "Operating continuously at 106% of rated capacity."
-        }
-    ],
-    "trend_data": {
-        "window": "14_days",
-        "summary": {
-            "vibration": {"trend": "rising", "change_percent": 19},
-            "temperature": {"trend": "stable", "change_percent": 2},
-            "current_draw": {"trend": "rising", "change_percent": 11}
-        }
-    }
+  
 }
 
 # 4. Get Today's Date dynamically for the Action Date matrix calculations
