@@ -145,9 +145,9 @@
     }
   ],
   "advisory": {
-    "recommendation": "PENDING \u2014 Ibrahim's advisory layer",
+    "recommendation": "The Cement Mill is in PF Zone 4 with an estimated Remaining Useful Life of approximately 0.1 days, indicating imminent failure. The primary driving factor is a significantly rising vibration trend, with the current signal (0.5457) well above the threshold (0.1015). This elevated and increasing vibration is consistent with progressive mechanical degradation, likely associated with severe bearing wear, shaft misalignment, or mechanical looseness. Immediate verification through detailed vibration signature analysis, visual inspection for mechanical looseness, and thermal imaging of critical bearings should be performed. Depending on inspection findings, conditional maintenance may include bearing replacement, re-alignment of shafts, or tightening of mechanical connections. Delayed intervention may reduce cement grinding capacity and delay production.",
     "urgency": "high",
-    "suggested_action_by": null
+    "suggested_action_by": "2026-07-10"
   },
   "escalation": {
     "status": "work_order_generated",

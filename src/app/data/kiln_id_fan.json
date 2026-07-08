@@ -145,9 +145,9 @@
     }
   ],
   "advisory": {
-    "recommendation": "PENDING \u2014 Ibrahim's advisory layer",
+    "recommendation": "The Kiln ID Fan is exhibiting a rising vibration trend, with the current signal exceeding its operational threshold, placing the asset in PF Zone 2 (Early Degradation). This condition, coupled with an estimated Remaining Useful Life of approximately 2.1 days, suggests progressive degradation. The elevated vibration is consistent with potential issues such as rotor imbalance, mechanical looseness, or early-stage bearing wear. Verification activities should include a detailed vibration signature analysis, a visual inspection for mechanical looseness, and a bearing inspection. Depending on the inspection findings, re-balancing the rotor, tightening mechanical connections, or replacing affected bearings may be required. Delayed intervention may increase the likelihood of an unplanned kiln outage and disrupt clinker production.",
     "urgency": "medium",
-    "suggested_action_by": null
+    "suggested_action_by": "2026-07-15"
   },
   "escalation": {
     "status": "flagged_for_inspection",

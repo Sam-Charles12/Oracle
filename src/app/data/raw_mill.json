@@ -145,13 +145,13 @@
     }
   ],
   "advisory": {
-    "recommendation": "PENDING \u2014 Ibrahim's advisory layer",
+    "recommendation": "The Raw Mill is currently in Normal operating condition (PF Zone 1) with a Green Tier status. The primary driving factor, vibration trend, is stable, with the current signal (0.0883) remaining below its threshold (0.0913). While the asset's Remaining Useful Life is estimated at approximately 63.9 days, the stable vibration profile does not immediately suggest active degradation. However, the signal's proximity to the threshold may indicate a need for continued vigilance. Routine vibration signature analysis and a visual inspection of accessible components are recommended during the next scheduled maintenance window. Depending on these findings, further investigation into potential minor mechanical looseness or imbalance may be considered. This proactive approach helps maintain raw meal availability for downstream processing.",
     "urgency": "low",
-    "suggested_action_by": null
+    "suggested_action_by": "2026-08-07"
   },
   "escalation": {
     "status": "logged_only",
-    "queue": "green_queue",
+    "queue": "green_log",
     "notify": "none"
   },
   "last_updated": "2026-07-07T21:53:30.070369+00:00"
